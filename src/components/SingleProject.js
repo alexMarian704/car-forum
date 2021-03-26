@@ -1,21 +1,49 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase'
+import { Redirect } from 'react-router';
+import { compose } from 'redux'
 
-export default function SingleProject() {
+function SingleProject({ project , auth }) {
 
-    const {id} = useParams();
+    if(!auth.uid)
+        return(
+            <Redirect to="/singin"/>
+        )
 
-    return (
-        <div>
+    if (project) {
+        const singleProject = project[0];
+        return (
             <div>
                 <div>
-                    <h1>Project title - {id}</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam aut quo unde voluptas, fuga dolore veniam debitis voluptatem, labore id tempore explicabo. Magnam obcaecati nesciunt ipsa vel nihil suscipit eveniet?</p>
-                    <h2>Posted by</h2>
-                    <h3>at 202123 321</h3>
+                    <div>
+                        <h1>{singleProject.title}</h1>
+                        <p>{singleProject.content}</p>
+                        <h2>Posted by {singleProject.authorFirstName} {singleProject.authorLastName}</h2>
+                        <h3>at 202123 321</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <h1>Loading</h1>
+        )
+    }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state.firestore.ordered.projects)
+    return {
+        project: state.firestore.ordered.projects,
+        auth : state.firebase.auth
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect(props => [
+        { collection: 'projects', doc: props.match.params.id }
+    ])
+)(SingleProject)
 

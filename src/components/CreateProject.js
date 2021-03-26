@@ -1,6 +1,9 @@
 import React , {useState} from 'react'
+import {connect} from 'react-redux'
+import {createProject} from '../store/actions/projectAction'
+import { Redirect } from 'react-router-dom'
 
-export const CreateProject = () => {
+const CreateProject = ({createProject , auth}) => {
     const [project, setProject] = useState({title:'', content:''})
 
     const handeChange = (e)=>{
@@ -9,8 +12,14 @@ export const CreateProject = () => {
 
     const handeSubmit = (e)=>{
         e.preventDefault()
+        createProject(project)
         console.log(project)
     }
+
+    if(!auth.uid)
+        return(
+            <Redirect to="singin"/>
+        )
 
     return (
         <div>
@@ -31,3 +40,19 @@ export const CreateProject = () => {
         </div>
     )
 }
+
+const mapStateProject = (state) => {
+    return {
+        auth : state.firebase.auth
+    }
+}
+
+const mapDispatchProps = (dispatch) =>{
+    return{
+        createProject : (project) => {
+            return dispatch(createProject(project))
+        }
+    }
+}
+
+export default connect(mapStateProject , mapDispatchProps)(CreateProject)

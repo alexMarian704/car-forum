@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const SingUp = props => {
+const SingUp = ({auth}) => {
     const [log, setLog] = useState({email:'',password:'', firstName:'' , lastName:''})
 
     const handeChange = (e)=>{
@@ -11,6 +13,11 @@ const SingUp = props => {
         e.preventDefault()
         console.log(log)
     }
+
+    if(auth.uid)
+        return(
+            <Redirect  to="/"/>
+        )
 
     return (
         <div>
@@ -42,4 +49,10 @@ const SingUp = props => {
     )
 }
 
-export default SingUp;
+const mapStateToprops = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToprops)(SingUp);

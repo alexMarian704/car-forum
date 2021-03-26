@@ -5,7 +5,7 @@ import FirstPage from './components/firstPage';
 import SingleProject from './components/SingleProject';
 import SingIn from './components/SingIn';
 import SingUp from './components/SingUp';
-import { CreateProject } from './components/CreateProject';
+import CreateProject from './components/CreateProject';
 
 function App() {
   return (

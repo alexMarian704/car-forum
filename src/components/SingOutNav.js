@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-export default function SingOutNav() {
+function SingOutNav() {
     return (
         <ul>
             <li><NavLink to="/singin">Sing in</NavLink></li>
@@ -9,3 +9,5 @@ export default function SingOutNav() {
         </ul>
     )
 }
+
+export default SingOutNav
