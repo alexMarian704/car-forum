@@ -6,8 +6,8 @@ export default function ProjectSum({project}) {
             <div id="card">
                     <h1>{project.title}</h1>
                     <p>{project.content}</p>
-                    <p>posted by marian</p>
-                    <p>2021 2 3</p>
+                    <p>posted by {project.authorFirstName} {project.authorLasttName}</p>
+                    <p>{project.createdAt.toDate().toDateString()}</p>
                 </div>
         </div>
     )

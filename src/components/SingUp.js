@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {singUp} from '../store/actions/authAction'
 
-const SingUp = ({auth}) => {
+const SingUp = ({auth ,singUp , authError}) => {
     const [log, setLog] = useState({email:'',password:'', firstName:'' , lastName:''})
 
     const handeChange = (e)=>{
@@ -12,6 +13,7 @@ const SingUp = ({auth}) => {
     const handeSubmit = (e)=>{
         e.preventDefault()
         console.log(log)
+        singUp(log)
     }
 
     if(auth.uid)
@@ -29,12 +31,12 @@ const SingUp = ({auth}) => {
                     <input type="email" id="email" onChange={handeChange} autoComplete="off"/>
                 </div>
                 <div>
-                    <label htmlFor="firstName">Password</label>
+                    <label htmlFor="firstName">First Name</label>
                     <br/>
                     <input type="text" id="firstName" onChange={handeChange} autoComplete="off"/>
                 </div>
                 <div>
-                    <label htmlFor="lastName">Password</label>
+                    <label htmlFor="lastName">Last Name</label>
                     <br/>
                     <input type="text" id="lastName" onChange={handeChange} autoComplete="off"/>
                 </div>
@@ -45,14 +47,22 @@ const SingUp = ({auth}) => {
                 </div>
                 <button>Sing Up</button>
             </form>
+            {authError && <h2>{authError}</h2>}
         </div>
     )
 }
 
 const mapStateToprops = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
 }
 
-export default connect(mapStateToprops)(SingUp);
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        singUp : (newUser) => dispatch(singUp(newUser))    
+    }
+}   
+
+export default connect(mapStateToprops ,mapDispatchToProps)(SingUp);

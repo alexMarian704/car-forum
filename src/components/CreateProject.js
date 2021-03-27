@@ -1,10 +1,11 @@
 import React , {useState} from 'react'
 import {connect} from 'react-redux'
 import {createProject} from '../store/actions/projectAction'
-import { Redirect } from 'react-router-dom'
+import { useHistory , Redirect } from 'react-router-dom'
 
 const CreateProject = ({createProject , auth}) => {
     const [project, setProject] = useState({title:'', content:''})
+    const history = useHistory()
 
     const handeChange = (e)=>{
         setProject({...project,[e.target.id]: e.target.value,})
@@ -13,12 +14,12 @@ const CreateProject = ({createProject , auth}) => {
     const handeSubmit = (e)=>{
         e.preventDefault()
         createProject(project)
-        console.log(project)
+        history.push('/')
     }
 
     if(!auth.uid)
         return(
-            <Redirect to="singin"/>
+            <Redirect to="/singin"/>
         )
 
     return (

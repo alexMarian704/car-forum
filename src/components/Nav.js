@@ -4,14 +4,13 @@ import SingInNav from './SingInNav'
 import SingOutNav from './SingOutNav'
 import {connect} from 'react-redux'
 
-function Nav({auth}) {
-    console.log(auth)
+function Nav({auth , profile}) {
     const isLogIn = auth.uid ? true : false
     return (
         <nav>
             <Link to="/"><h1>Projects</h1></Link>
             <div id="links-container">
-                { isLogIn && <SingInNav />}
+                { isLogIn && <SingInNav profile={profile} />}
                 { !isLogIn && <SingOutNav />}
             </div>
         </nav>
@@ -19,8 +18,10 @@ function Nav({auth}) {
 }
 
 const mapStatetoProps = (state)=>{
+    console.log(state)
     return{
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile : state.firebase.profile
     }
 }
 

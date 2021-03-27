@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import { singOut } from '../store/actions/authAction'
 
-function SingInNav({singOut}) {
+function SingInNav({singOut , profile}) {
+    const initial = profile.initials
+
     return (
        <ul>
            <li><NavLink to="/newproject">New Project</NavLink></li>
            <li><a onClick={singOut}>Log Out</a></li>
            <li><NavLink to="/">Name</NavLink></li>
+           {profile.initials && <li style={{
+               color: "white"
+           }}>{initial.toUpperCase()}</li>}
        </ul>
     )
 }

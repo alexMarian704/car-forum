@@ -1,12 +1,14 @@
 export const createProject = (project)=>{
     return (dispatch , getState , {getFirebase , getFirestore})=>{
         const firestore = getFirestore()
+        const profile = getState().firebase.profile
+        const id = getState().firebase.auth.uid
         firestore.collection('projects').add({
             ...project,
-            authorFirstName :'dinamo',
-            authorLasttName: 'pierder',
-            authorId:12345,
-            createdAt : Date.now()
+            authorFirstName :profile.firstName,
+            authorLasttName: profile.lastName,
+            authorId:id,
+            createdAt : new Date()
         }).then(()=>{
             dispatch({ type: 'CREATE_PROJECT', project}) 
         }).catch((err)=>{
