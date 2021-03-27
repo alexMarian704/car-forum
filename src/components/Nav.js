@@ -18,7 +18,7 @@ function Nav({auth , profile}) {
 }
 
 const mapStatetoProps = (state)=>{
-    console.log(state)
+    // console.log(state)
     return{
         auth: state.firebase.auth,
         profile : state.firebase.profile

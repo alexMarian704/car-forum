@@ -1,5 +1,4 @@
 import React from 'react'
-import Notification from './Notification'
 import ProjectList from './ProjectList'
 import { connect } from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -18,7 +17,6 @@ function FirstPage({projects ,auth}) {
             <div id="container">
                <ProjectList projects={projects} />
             </div>
-            <Notification />
         </div>
     )
 }
@@ -33,6 +31,6 @@ const mapStateProject = (state) => {
 export default compose(
     connect(mapStateProject),
     firestoreConnect([
-        { collection: 'projects'}
+        { collection: 'projects' , orderBy: ['createdAt' , 'desc']}
     ])
 )(FirstPage)
