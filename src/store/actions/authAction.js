@@ -16,7 +16,6 @@ export const singIn = (credential) =>{
 export const singOut = ()=>{
     return(dispatch , getState , {getFirebase}) =>{
             const firebase = getFirebase()
-
             firebase.auth().signOut()
             .then(()=>{
                 dispatch({type : "SINGOUT_SUCCES"})

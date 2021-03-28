@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createProject } from '../store/actions/projectAction'
 import { useHistory, Redirect } from 'react-router-dom'
 import { app } from '../config/base'
+import {motion} from 'framer-motion'
 
 const CreateProject = ({ createProject, auth }) => {
     const [project, setProject] = useState({ title: '', content: '', file: '' })
@@ -48,7 +49,12 @@ const CreateProject = ({ createProject, auth }) => {
     };
 
     return (
-        <div>
+        <motion.div
+        animate={{opacity:1}} 
+        initial={{opacity:0}}
+        exit={{opacity:1}}
+        transition={{duration:1.4}}
+        >
             <form onSubmit={handeSubmit} id="projectForm">
                 <h3 id="createTitle">New project</h3>
                 <div>
@@ -69,7 +75,7 @@ const CreateProject = ({ createProject, auth }) => {
                 </div>
                 <button id="createBut">Create</button>
             </form>
-        </div>
+        </motion.div>
     )
 }
 

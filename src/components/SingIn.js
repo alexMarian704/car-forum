@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { singIn } from '../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 const SingIn = ({ singIn, authError, auth }) => {
     const [log, setLog] = useState({ email: '', password: '' })
@@ -21,7 +22,12 @@ const SingIn = ({ singIn, authError, auth }) => {
         )
 
     return (
-        <div>
+        <motion.div
+        animate={{opacity:1}} 
+        initial={{opacity:0}}
+        exit={{opacity:1}}
+        transition={{duration:1.4}}
+        >
             <form onSubmit={handeSubmit}>
                 <h3 id="singTitle">Sing In</h3>
                 <div>
@@ -37,7 +43,7 @@ const SingIn = ({ singIn, authError, auth }) => {
                 <button id="singIn">Sing In</button>
                 {authError && <h2>{authError}</h2>}
             </form>
-        </div>
+        </motion.div>
     )
 }
 

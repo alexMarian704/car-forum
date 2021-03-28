@@ -4,20 +4,26 @@ import { connect } from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 function FirstPage({projects ,auth}) {
 
     if(!auth.uid)
         return(
-            <Redirect  to="singin"/>
+            <Redirect  to="/singin"/>
         )
 
     return (
-        <div>
+        <motion.div 
+        animate={{opacity:1}} 
+        initial={{opacity:0}}
+        exit={{opacity:1}}
+        transition={{duration:1.8}}
+        >
             <div id="container">
                <ProjectList projects={projects} />
             </div>
-        </div>
+        </motion.div>
     )
 }
 

@@ -188,6 +188,10 @@ textarea:focus{
   outline: none;
 }
 
+#singUpBut:hover,#singIn:hover,#fileBut:hover,#createBut:hover, li:hover{
+  background-color: rgb(170, 51, 51);
+}
+
 #singUpTitle{
   font-size: 30px;
 }
@@ -254,4 +258,11 @@ footer{
   align-items: center;
   font-size: 70px;
   box-shadow: 0px 0px 5px 9px rgba(92, 35, 35, 0.1);
+}
+
+#isLoading{
+  width: 70vw;
+  margin: auto;
+  font-size: 40px;
+  text-align: center;
 }

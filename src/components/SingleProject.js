@@ -28,13 +28,12 @@ function SingleProject({ project , auth }) {
         )
     } else {
         return (
-            <h1>Loading</h1>
+            <h1 id="isLoading">Loading</h1>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.firestore.ordered.projects)
     return {
         project: state.firestore.ordered.projects,
         auth : state.firebase.auth
