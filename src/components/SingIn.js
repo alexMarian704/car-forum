@@ -12,7 +12,6 @@ const SingIn = ({ singIn, authError, auth }) => {
 
     const handeSubmit = (e) => {
         e.preventDefault()
-        console.log(log)
         singIn(log)
     }
 
@@ -24,7 +23,7 @@ const SingIn = ({ singIn, authError, auth }) => {
     return (
         <div>
             <form onSubmit={handeSubmit}>
-                <h3>Sing In</h3>
+                <h3 id="singTitle">Sing In</h3>
                 <div>
                     <label htmlFor="email">Email</label>
                     <br />
@@ -35,7 +34,7 @@ const SingIn = ({ singIn, authError, auth }) => {
                     <br />
                     <input type="password" id="password" onChange={handeChange} autoComplete="off" />
                 </div>
-                <button>Sing In</button>
+                <button id="singIn">Sing In</button>
                 {authError && <h2>{authError}</h2>}
             </form>
         </div>

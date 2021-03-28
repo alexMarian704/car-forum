@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../store/actions/projectAction'
 import { useHistory, Redirect } from 'react-router-dom'
@@ -7,6 +7,8 @@ import { app } from '../config/base'
 const CreateProject = ({ createProject, auth }) => {
     const [project, setProject] = useState({ title: '', content: '', file: '' })
     const history = useHistory()
+    const inputFile = useRef(null)
+    const [loading , setLoading] = useState(null)
 
     const handeChange = async (e) => {
         setProject({ ...project, [e.target.id]: e.target.value, })
@@ -16,7 +18,6 @@ const CreateProject = ({ createProject, auth }) => {
 
     const fileChange = async (e) => {
         const file = e.target.files[0]
-        console.log(file)
         if (type.includes(file.type)) {
             const storageRef = app.storage().ref(file.name)
             storageRef.put(file).on('state_changed', (snap) => {
@@ -25,6 +26,7 @@ const CreateProject = ({ createProject, auth }) => {
             }, async () => {
                 const urlA = await storageRef.getDownloadURL();
                 setProject({ ...project, file: urlA })
+                setLoading(true)
             })
         }
     }
@@ -40,26 +42,32 @@ const CreateProject = ({ createProject, auth }) => {
             <Redirect to="/singin" />
         )
 
+    const onButtonClick = (e) => {
+        e.preventDefault()
+        inputFile.current.click();
+    };
+
     return (
         <div>
-            <form onSubmit={handeSubmit}>
-                <h3>Sing In</h3>
+            <form onSubmit={handeSubmit} id="projectForm">
+                <h3 id="createTitle">New project</h3>
                 <div>
                     <label htmlFor="title">Tile</label>
-                    <br />
                     <input type="text" id="title" onChange={handeChange} autoComplete="off" />
                 </div>
                 <div>
                     <label htmlFor="file">File</label>
                     <br />
-                    <input type="file" id="fileUrl" onChange={fileChange} />
+                    <input type="file" id="fileUrl" onChange={fileChange} ref={inputFile} />
+                    <button onClick={onButtonClick} id="fileBut">Select file</button>
+                    {loading && <h1 id="loaded">Loaded</h1>}
                 </div>
+                <br/>
                 <div>
                     <label htmlFor="content">Content</label>
-                    <br />
                     <textarea type="text" id="content" onChange={handeChange} autoComplete="off" />
                 </div>
-                <button>Create Project</button>
+                <button id="createBut">Create</button>
             </form>
         </div>
     )

@@ -20,7 +20,8 @@ function SingleProject({ project , auth }) {
                         <h1>{singleProject.title}</h1>
                         <p>{singleProject.content}</p>
                         <h2>Posted by {singleProject.authorFirstName} {singleProject.authorLastName}</h2>
-                        <h3>at 202123 321</h3>
+                        <h3>{singleProject.createdAt.toDate().toDateString()}</h3>
+                        <img src={singleProject.file} />
                     </div>
                 </div>
             </div>

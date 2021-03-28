@@ -6,11 +6,13 @@ import SingleProject from './components/SingleProject';
 import SingIn from './components/SingIn';
 import SingUp from './components/SingUp';
 import CreateProject from './components/CreateProject';
+import Footer from './components/footer';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <div id="footerRender">
         <Nav />
         <Switch>
           <Route path="/" exact component={FirstPage}/>
@@ -19,6 +21,8 @@ function App() {
           <Route path="/singup" component={SingUp}/>
           <Route path="/newproject" component={CreateProject}/>
         </Switch>
+        </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );

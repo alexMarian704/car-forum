@@ -8,9 +8,8 @@ function SingInNav({singOut , profile}) {
 
     return (
        <ul>
-           <li><NavLink to="/newproject">New Project</NavLink></li>
+           <li><NavLink to="/newproject">New Post</NavLink></li>
            <li><a onClick={singOut}>Log Out</a></li>
-           <li><NavLink to="/">Name</NavLink></li>
            {profile.initials && <li style={{
                color: "white"
            }}>{initial.toUpperCase()}</li>}
