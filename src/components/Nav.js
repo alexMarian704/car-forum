@@ -3,16 +3,9 @@ import { Link } from 'react-router-dom'
 import SingInNav from './SingInNav'
 import SingOutNav from './SingOutNav'
 import {connect} from 'react-redux'
-import useWindowDimensions from './useWindowResize';
 
 function Nav({auth , profile}) {
-    const { width } = useWindowDimensions();
-    const [classNav , setNav] = useState(false)
-
     const isLogIn = auth.uid ? true : false
-    if(width < 550){
-        setNav(!classNav)
-    }
 
     return (
         <nav>

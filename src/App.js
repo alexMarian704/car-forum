@@ -7,6 +7,7 @@ import SingIn from './components/SingIn';
 import SingUp from './components/SingUp';
 import CreateProject from './components/CreateProject';
 import Footer from './components/footer';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/singin" component={SingIn}/>
           <Route path="/singup" component={SingUp}/>
           <Route path="/newproject" component={CreateProject}/>
+          <Route path="/your/profile" component={Profile}/>
         </Switch>
         </div>
         <Footer />
