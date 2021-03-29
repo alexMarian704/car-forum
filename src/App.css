@@ -279,3 +279,12 @@ hr{
   border-left: 3px solid rgb(219, 53, 53);
   border-radius: 4px;
 }
+
+#backHome{
+  background-color: rgb(219, 53, 53);
+  border-radius: 20px;
+  box-shadow:2px 0px 15px -1px rgba(56, 56, 56, 0.3);
+  width: 50vw;
+  margin: auto;
+  min-width: 260px;
+}

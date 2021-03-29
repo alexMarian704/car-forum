@@ -8,6 +8,7 @@ import SingUp from './components/SingUp';
 import CreateProject from './components/CreateProject';
 import Footer from './components/footer';
 import Profile from './components/Profile';
+import ErrorPage from './components/404';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={SingUp}/>
           <Route path="/newproject" component={CreateProject}/>
           <Route path="/your/profile" component={Profile}/>
+          <Route  path="*" component={ErrorPage}/>
         </Switch>
         </div>
         <Footer />
