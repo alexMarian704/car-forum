@@ -8,6 +8,7 @@ import { createComment } from '../store/actions/commentAction';
 
 function SingleProject({ project, auth , createComment , comment}) {
     const [commentA, setComment] = useState({parentPost:'', commentText:''});
+    const [inputValue , setInputValue] = useState(null)
     const { id } = useParams();
 
     if (!auth.uid)
@@ -22,6 +23,7 @@ function SingleProject({ project, auth , createComment , comment}) {
     }
     const postComment = () => {
         createComment(commentA)
+        setInputValue('')
     }
 
     if (project) {
@@ -42,10 +44,11 @@ function SingleProject({ project, auth , createComment , comment}) {
                         {singleProject.file && <img src={singleProject.file} alt={singleProject.title}/>}
                     </div>
                     <div>
+                        <h2>Comments:</h2>
                         {comment &&comment.map((comm , index)=>{
                             if(comm.parentPost === id){
                                 return(
-                                    <div key={index}>
+                                    <div key={index} id="commentContainer">
                                         <h2>{comm.authorFirstName} {comm.authorLasttName}</h2>
                                         <p>{comm.commentText}</p>
                                         <p>{comm.createdAt.toDate().toDateString()}</p>
@@ -55,10 +58,11 @@ function SingleProject({ project, auth , createComment , comment}) {
                         })}
                     </div>
                     <br />
+                    <hr/>
                     <div>
                         <form onSubmit={handleSubmit}>
                             <label >Add comment</label>
-                            <input type="text" id="comment" onChange={changeComment} autoComplete="off"/>
+                            <input type="text" id="comment" onChange={changeComment} autoComplete="off" value={inputValue}/>
                             <br />
                             <button onClick={postComment} id="createBut">Post</button>
                         </form>
