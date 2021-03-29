@@ -13,7 +13,7 @@ function SingleProject({ project, auth , createComment , comment}) {
 
     if (!auth.uid)
         return (
-            <Redirect to="/singin" />
+            <Redirect to="/signin" />
         )
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -62,7 +62,7 @@ function SingleProject({ project, auth , createComment , comment}) {
                     <div>
                         <form onSubmit={handleSubmit}>
                             <label >Add comment</label>
-                            <input type="text" id="comment" onChange={changeComment} autoComplete="off" value={inputValue}/>
+                            <input type="text" id="comment" onChange={changeComment} autoComplete="off" value={inputValue} required/>
                             <br />
                             <button onClick={postComment} id="createBut">Post</button>
                         </form>

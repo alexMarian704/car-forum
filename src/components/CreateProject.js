@@ -40,7 +40,7 @@ const CreateProject = ({ createProject, auth }) => {
 
     if (!auth.uid)
         return (
-            <Redirect to="/singin" />
+            <Redirect to="/signin" />
         )
 
     const onButtonClick = (e) => {
@@ -59,7 +59,7 @@ const CreateProject = ({ createProject, auth }) => {
                 <h3 id="createTitle">New project</h3>
                 <div>
                     <label htmlFor="title">Tile</label>
-                    <input type="text" id="title" onChange={handeChange} autoComplete="off" />
+                    <input type="text" id="title" onChange={handeChange} autoComplete="off" required/>
                 </div>
                 <div>
                     <label htmlFor="file">File</label>
@@ -71,7 +71,7 @@ const CreateProject = ({ createProject, auth }) => {
                 <br/>
                 <div>
                     <label htmlFor="content">Content</label>
-                    <textarea type="text" id="content" onChange={handeChange} autoComplete="off" />
+                    <textarea type="text" id="content" onChange={handeChange} autoComplete="off" required/>
                 </div>
                 <button id="createBut">Create</button>
             </form>

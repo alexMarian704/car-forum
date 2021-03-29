@@ -29,28 +29,28 @@ const SingUp = ({auth ,singUp , authError}) => {
         transition={{duration:1.4}}
         >
             <form onSubmit={handeSubmit}>
-                <h3 id="singUpTitle">Sing Up</h3>
+                <h3 id="singUpTitle">Sign Up</h3>
                 <div>
                     <label htmlFor="email">Email</label>
                     <br/>
-                    <input type="email" id="email" onChange={handeChange} autoComplete="off"/>
+                    <input type="email" id="email" onChange={handeChange} autoComplete="off" required/>
                 </div>
                 <div>
                     <label htmlFor="firstName">First Name</label>
                     <br/>
-                    <input type="text" id="firstName" onChange={handeChange} autoComplete="off"/>
+                    <input type="text" id="firstName" onChange={handeChange} autoComplete="off" required/>
                 </div>
                 <div>
                     <label htmlFor="lastName">Last Name</label>
                     <br/>
-                    <input type="text" id="lastName" onChange={handeChange} autoComplete="off"/>
+                    <input type="text" id="lastName" onChange={handeChange} autoComplete="off" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
                     <br/>
-                    <input type="password" id="password" onChange={handeChange} autoComplete="off"/>
+                    <input type="password" id="password" onChange={handeChange} autoComplete="off" required/>
                 </div>
-                <button id="singUpBut">Sing Up</button>
+                <button id="singUpBut">Sign Up</button>
             </form>
             {authError && <h2>{authError}</h2>}
         </motion.div>

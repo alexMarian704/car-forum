@@ -18,8 +18,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={FirstPage}/>
           <Route path="/project/:id" component={SingleProject}/>
-          <Route path="/singin" component={SingIn}/>
-          <Route path="/singup" component={SingUp}/>
+          <Route path="/signin" component={SingIn}/>
+          <Route path="/signup" component={SingUp}/>
           <Route path="/newproject" component={CreateProject}/>
           <Route path="/your/profile" component={Profile}/>
         </Switch>

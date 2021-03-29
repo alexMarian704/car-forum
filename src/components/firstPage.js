@@ -10,7 +10,7 @@ function FirstPage({projects ,auth}) {
 
     if(!auth.uid)
         return(
-            <Redirect  to="/singin"/>
+            <Redirect  to="/signin"/>
         )
 
     return (

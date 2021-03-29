@@ -11,7 +11,7 @@ function Profile({profile , auth}) {
 
     if(!auth.uid)
         return(
-            <Redirect  to="/singin"/>
+            <Redirect  to="/signin"/>
         )
     return (
         <motion.div
