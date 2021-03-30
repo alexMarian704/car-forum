@@ -9,7 +9,7 @@ import { app } from '../config/base'
 
 function SingleProject({ project, auth, createComment, comment }) {
     const [commentA, setComment] = useState({ parentPost: '', commentText: '' });
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState(null)
     const { id } = useParams();
     const db = app.firestore()
     const history = useHistory();
