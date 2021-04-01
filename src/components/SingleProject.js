@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'
-import { Redirect, useParams , useHistory } from 'react-router';
+import { Redirect, useParams, useHistory } from 'react-router';
 import { compose } from 'redux'
 import { motion } from 'framer-motion'
 import { createComment } from '../store/actions/commentAction';
 import { app } from '../config/base'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function SingleProject({ project, auth, createComment, comment }) {
     const [commentA, setComment] = useState({ parentPost: '', commentText: '' });
@@ -13,7 +15,7 @@ function SingleProject({ project, auth, createComment, comment }) {
     const { id } = useParams();
     const db = app.firestore()
     const history = useHistory();
-    const [isDeleted , setisDeleted] = useState(false)
+    const [isDeleted, setisDeleted] = useState(false)
 
     if (!auth.uid)
         return (
@@ -29,13 +31,17 @@ function SingleProject({ project, auth, createComment, comment }) {
         createComment(commentA)
         setInputValue('')
     }
-    const deletePost =  async (e) => {
+    const deletePost = async (e) => {
         setisDeleted(true);
         await db.collection('projects').doc(id).delete()
         history.push('/');
     }
+    const getDataClick = async (e) => {
+        let deleteId = (e.target.parentElement.getAttribute('data-id'))
+        await db.collection('comments').doc(String(deleteId)).delete()
+    }
 
-    if (project && isDeleted===false) {
+    if (project && isDeleted === false) {
         const singleProject = project[0];
         return (
             <motion.div
@@ -52,18 +58,22 @@ function SingleProject({ project, auth, createComment, comment }) {
                         <h3>{singleProject.createdAt.toDate().toDateString()}</h3>
                         {singleProject.file && <img src={singleProject.file} alt={singleProject.title} />}
                         <br />
-                        { (auth.uid === singleProject.authorId ||
-                        auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) &&<button id="createBut" onClick={deletePost}>Delete</button>}
+                        {(auth.uid === singleProject.authorId ||
+                            auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="createBut" onClick={deletePost}>Delete</button>}
                     </div>
                     <div>
                         <h2>Comments:</h2>
                         {comment && comment.map((comm, index) => {
                             if (comm.parentPost === id) {
                                 return (
-                                    <div key={index} id="commentContainer">
+                                    <div key={index} id="commentContainer"
+                                        data-id={comm.id}
+                                    >
                                         <h2>{comm.authorFirstName} {comm.authorLasttName}</h2>
                                         <p>{comm.commentText}</p>
                                         <p>{comm.createdAt.toDate().toDateString()}</p>
+                                        {(auth.uid === comm.authorId ||
+                                            auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="comDelete" onClick={getDataClick} data-id={comm.id}><FontAwesomeIcon icon={faTrash} /></button>}
                                     </div>
                                 )
                             }
@@ -82,7 +92,7 @@ function SingleProject({ project, auth, createComment, comment }) {
                 </div>
             </motion.div>
         )
-    }else {
+    } else {
         return (
             <h1 id="isLoading">Loading</h1>
         )

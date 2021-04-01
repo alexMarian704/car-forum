@@ -289,3 +289,17 @@ hr{
   margin: auto;
   min-width: 260px;
 }
+
+#comDelete{
+  width: 50px;
+  cursor: pointer;
+  background-color: rgb(219, 53, 53);
+  border-radius: 3px;
+  border: none;
+  margin-bottom: 4px;
+  outline: none;
+}
+
+#comDelete:hover{
+  background-color: rgba(243, 9, 9, 0.40);
+}
