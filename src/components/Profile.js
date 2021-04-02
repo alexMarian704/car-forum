@@ -1,18 +1,22 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {motion} from 'framer-motion'
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 function Profile({profile , auth}) {
     let d = null;
+    firebase.auth().currentUser?.reload()
     if(auth.uid){
         d = new Date(auth.lastLoginAt*1).toLocaleDateString()
     }
 
-    if(!auth.uid)
-        return(
-            <Redirect  to="/signin"/>
+    if (!auth.uid || (firebase.auth().currentUser?.emailVerified === false && profile.afterUpdate ))
+        return (
+            <Redirect to="/signin" />
         )
+        
     return (
         <motion.div
         animate={{opacity:1}} 

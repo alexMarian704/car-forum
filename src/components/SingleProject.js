@@ -8,19 +8,23 @@ import { createComment } from '../store/actions/commentAction';
 import { app } from '../config/base'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
-function SingleProject({ project, auth, createComment, comment }) {
+
+function SingleProject({ project, auth, createComment, comment , profile}) {
     const [commentA, setComment] = useState({ parentPost: '', commentText: '' });
     const [inputValue, setInputValue] = useState(null)
     const { id } = useParams();
     const db = app.firestore()
     const history = useHistory();
     const [isDeleted, setisDeleted] = useState(false)
+    firebase.auth().currentUser?.reload()
 
-    if (!auth.uid)
-        return (
-            <Redirect to="/signin" />
-        )
+    if (!auth.uid || (firebase.auth().currentUser?.emailVerified === false && profile.afterUpdate ))
+    return (
+        <Redirect to="/signin" />
+    )
     const handleSubmit = (e) => {
         e.preventDefault()
     }
@@ -103,7 +107,8 @@ const mapStateToProps = (state) => {
     return {
         project: state.firestore.ordered.projects,
         auth: state.firebase.auth,
-        comment: state.firestore.ordered.comments
+        comment: state.firestore.ordered.comments,
+        profile: state.firebase.profile
     }
 }
 

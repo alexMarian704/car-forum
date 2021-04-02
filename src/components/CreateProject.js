@@ -1,15 +1,18 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../store/actions/projectAction'
 import { useHistory, Redirect } from 'react-router-dom'
 import { app } from '../config/base'
 import {motion} from 'framer-motion'
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
-const CreateProject = ({ createProject, auth }) => {
+const CreateProject = ({ createProject, auth , profile}) => {
     const [project, setProject] = useState({ title: '', content: '', file: '' })
     const history = useHistory()
     const inputFile = useRef(null)
     const [loading , setLoading] = useState(null)
+    firebase.auth().currentUser?.reload()
 
     const handeChange = async (e) => {
         setProject({ ...project, [e.target.id]: e.target.value, })
@@ -38,7 +41,7 @@ const CreateProject = ({ createProject, auth }) => {
         history.push('/')
     }
 
-    if (!auth.uid)
+    if (!auth.uid || (firebase.auth().currentUser?.emailVerified === false && profile.afterUpdate ))
         return (
             <Redirect to="/signin" />
         )
@@ -81,7 +84,8 @@ const CreateProject = ({ createProject, auth }) => {
 
 const mapStateProject = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 
