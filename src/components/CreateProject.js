@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../store/actions/projectAction'
 import { useHistory, Redirect } from 'react-router-dom'
