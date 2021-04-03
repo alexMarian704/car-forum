@@ -11,6 +11,7 @@ import { app } from '../config/base'
 function Profile({ profile, auth }) {
     const [photo, setPhoto] = useState(undefined)
     const inputFile = useRef(null)
+    console.log(profile, auth)
 
     let d = null;
     firebase.auth().currentUser?.reload()
@@ -60,9 +61,12 @@ function Profile({ profile, auth }) {
             exit={{ opacity: 1 }}
             transition={{ duration: 1.4 }}
         >
-            {profile.isEmpty === undefined && !auth.photoUrl && profile.initials && <div id="profilePhoto">{profile.initials.toUpperCase()}</div>}
+            {photo === undefined && auth.photoURL === null && profile.initials && <div id="profilePhoto">{profile.initials.toUpperCase()}</div>}
+
             {photo === undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" /></div>}
+
             {photo && <div id="profilePhoto"><img src={photo} id="imapePhoto" /></div>}
+
             <form >
                 <input type="file" id="profileInput" ref={inputFile} onChange={uploadFile} />
                 <button id="setProfile" onClick={uploadButton}><FontAwesomeIcon icon={faCamera} /></button>
