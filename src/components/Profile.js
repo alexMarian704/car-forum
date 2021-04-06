@@ -1,17 +1,21 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { app } from '../config/base'
 
 function Profile({ profile, auth }) {
     const [photo, setPhoto] = useState(undefined)
     const inputFile = useRef(null)
-    console.log(profile, auth)
+    const [display, setDisplay] = useState("none")
+    const history = useHistory()
+    const [deleteError, setDeleteError] = useState(null)
+    const [actulaPassword, setActualPassword] = useState('')
+    const [passwordView, setPasswordView] = useState('none')
 
     let d = null;
     firebase.auth().currentUser?.reload()
@@ -54,6 +58,46 @@ function Profile({ profile, auth }) {
         inputFile.current.click()
     }
 
+    const deletePopUp = (e) => {
+        e.preventDefault()
+        setDisplay('block')
+    }
+
+    const closePopUp = (e) => {
+        e.preventDefault()
+        setDisplay('none')
+        setPasswordView('none')
+    }
+
+    const reveal = (e) => {
+        e.preventDefault()
+        setPasswordView('block')
+    }
+
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        if (actulaPassword === 'deleteUser') {
+            const credentials = firebase.auth.EmailAuthProvider.credential(
+                user.email,
+                actulaPassword
+            );
+            await user.reauthenticateWithCredential(
+                credentials
+            ).catch((err) => {
+                setDeleteError('Wrong password');
+            })
+            user.delete()
+                .then(() => {
+                    history.push('/')
+                })
+                .catch((err) => {
+                    setDeleteError(err);
+                })
+        }else{
+            setDeleteError("Please type correct")
+        }
+    }
+
     return (
         <motion.div
             animate={{ opacity: 1 }}
@@ -75,6 +119,38 @@ function Profile({ profile, auth }) {
             {profile.initials && <h2>Last Name: {profile.lastName}</h2>}
             {auth.uid && <h2>Email: {auth.email}</h2>}
             {auth.uid && <h2>Last time login: {d}</h2>}
+
+            <div>
+                <button id="deletAccBut" onClick={deletePopUp}>
+                    Delete Account
+                </button>
+                {deleteError && <h2>{deleteError}</h2>}
+                <div style={{
+                    display: display,
+                }} id="deleteContainer">
+                    <h2>Are you sure you want to delete your account ?</h2>
+                    <button onClick={closePopUp} id="closePopUp"><FontAwesomeIcon icon={faTimes} /></button>
+                    <button id="noBut" onClick={closePopUp}>No</button>
+                    <button id="yesBut" onClick={reveal}>Yes</button>
+                    <div style={{
+                        display: passwordView
+                    }}>
+                        <h3>Type "deleteUser"</h3>
+                        <form>
+                            <input type="text"
+                                value={actulaPassword}
+                                onChange={(e) => { setActualPassword(e.target.value) }}
+                                id="title"
+                                autoComplete="off"
+                            />
+                        </form>
+                        <br />
+                        <button onClick={deleteAccount}
+                            className="yesBut"
+                        >Delete</button>
+                    </div>
+                </div>
+            </div>
         </motion.div>
     )
 }

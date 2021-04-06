@@ -1,36 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap");
 
-*{
-  font-family: 'Merienda', cursive; 
+* {
+  font-family: "Merienda", cursive;
 }
 
 .App {
   text-align: center;
   background-color: rgb(12, 12, 12);
   color: white;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
-nav{
+nav {
   width: 100vw;
   height: 70px;
   display: flex;
   justify-content: space-around;
   background-color: rgb(6, 7, 7);
   align-items: center;
-  box-shadow: 0px 0px 13px 6px rgba(243, 9, 9, 0.40);
+  box-shadow: 0px 0px 13px 6px rgba(243, 9, 9, 0.4);
 }
 
-nav h1{
+nav h1 {
   font-size: 30px;
 }
-ul{
+ul {
   text-decoration: none;
   display: flex;
   list-style: none;
 }
 
-li{
+li {
   text-decoration: none;
   font-size: 20px;
   margin-left: 10px;
@@ -40,45 +40,45 @@ li{
 }
 
 @media only screen and (max-width: 440px) {
-  nav h1{
+  nav h1 {
     font-size: 22px;
   }
-  li{
+  li {
     font-size: 15px;
     margin-left: 5px;
     padding: 3px;
   }
-  #link-container{
+  #link-container {
     justify-content: center;
   }
 }
 
-
-a{
+a {
   text-decoration: none;
   color: white;
   cursor: pointer;
 }
 
-#links-container{
+#links-container {
   display: flex;
   justify-content: space-around;
 }
 
-#card{
+#card {
   background-color: rgb(185, 28, 28);
-  width: 40vw;
+  width: 77vw;
   min-width: 260px;
   margin: auto;
+  max-width: 1000px;
   border-radius: 4px;
-  box-shadow: 0px 0px 2px 4px rgba(168, 50, 50, 0.10);
+  box-shadow: 0px 0px 2px 4px rgba(168, 50, 50, 0.1);
   text-align: center;
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 5px;
 }
 
-input{
+input {
   min-width: 250px;
   max-width: 500px;
   width: 40vw;
@@ -93,20 +93,20 @@ input{
   font-weight: 600;
 }
 
-input:focus{
+input:focus {
   border-bottom: 3px solid rgb(20, 184, 20);
 }
 
-label{
+label {
   font-size: 24px;
   display: block;
 }
 
-#fileUrl{
+#fileUrl {
   display: none;
 }
 
-#createBut{
+#createBut {
   width: 130px;
   height: 40px;
   background-color: rgb(219, 53, 53);
@@ -120,7 +120,7 @@ label{
   outline: none;
 }
 
-textarea{
+textarea {
   min-width: 250px;
   max-width: 76vw;
   width: 40vw;
@@ -134,11 +134,11 @@ textarea{
   border-radius: 4px;
 }
 
-textarea:focus{
+textarea:focus {
   border: 3px solid rgb(20, 184, 20);
 }
 
-#fileBut{
+#fileBut {
   width: 130px;
   height: 40px;
   background-color: rgb(219, 53, 53);
@@ -152,11 +152,11 @@ textarea:focus{
   outline: none;
 }
 
-#createTitle{
+#createTitle {
   font-size: 30px;
 }
 
-#singIn{
+#singIn {
   width: 130px;
   height: 40px;
   background-color: rgb(219, 53, 53);
@@ -170,11 +170,11 @@ textarea:focus{
   outline: none;
 }
 
-#singTitle{
+#singTitle {
   font-size: 28px;
 }
 
-#singUpBut{
+#singUpBut {
   width: 130px;
   height: 40px;
   background-color: rgb(219, 53, 53);
@@ -188,22 +188,26 @@ textarea:focus{
   outline: none;
 }
 
-#singUpBut:hover,#singIn:hover,#fileBut:hover,#createBut:hover, li:hover{
+#singUpBut:hover,
+#singIn:hover,
+#fileBut:hover,
+#createBut:hover,
+li:hover {
   background-color: rgb(170, 51, 51);
 }
 
-#singUpTitle{
+#singUpTitle {
   font-size: 30px;
 }
 
-img{
+img {
   max-width: 800px;
   width: 90vw;
   border-radius: 5px;
   box-shadow: 0px 0px 2px 4px rgba(36, 20, 20, 0.04);
 }
 
-#container{
+#container {
   width: 80vw;
   margin: auto;
   display: flex;
@@ -211,20 +215,20 @@ img{
   justify-content: center;
 }
 
-#cardText{
+#cardText {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
 }
 
-footer{
+footer {
   background-color: white;
   color: black;
   margin-bottom: 0px;
 }
 
-#footerRender{
+#footerRender {
   min-height: 90vh;
   background-color: rgb(12, 12, 12);
   /* background: url('./images/images.jpg');
@@ -232,17 +236,17 @@ footer{
   background-position: center; */
 }
 
-#pLink{
+#pLink {
   color: black;
   margin-left: 10px;
 }
 
-#loaded{
+#loaded {
   color: green;
   font-size: 23px;
 }
 
-#profilePhoto{
+#profilePhoto {
   min-width: 190px;
   min-height: 190px;
   max-width: 250px;
@@ -260,7 +264,7 @@ footer{
   box-shadow: 0px 0px 5px 9px rgba(92, 35, 35, 0.1);
 }
 
-#isLoading{
+#isLoading {
   width: 70vw;
   margin: auto;
   margin-top: 200px;
@@ -268,29 +272,30 @@ footer{
   text-align: center;
 }
 
-hr{
+hr {
   width: 62vw;
   border: 1px solid rgb(219, 53, 53);
 }
 
-#commentContainer{
-  width: 50vw;
+#commentContainer {
+  width: 80vw;
+  max-width: 600px;
   margin: auto;
-  box-shadow:2px 0px 15px -1px rgba(112,112,112,0.3);
+  box-shadow: 2px 0px 15px -1px rgba(112, 112, 112, 0.3);
   border-left: 3px solid rgb(219, 53, 53);
   border-radius: 4px;
 }
 
-#backHome{
+#backHome {
   background-color: rgb(219, 53, 53);
   border-radius: 20px;
-  box-shadow:2px 0px 15px -1px rgba(56, 56, 56, 0.3);
+  box-shadow: 2px 0px 15px -1px rgba(56, 56, 56, 0.3);
   width: 50vw;
   margin: auto;
   min-width: 260px;
 }
 
-#comDelete{
+#comDelete {
   width: 50px;
   cursor: pointer;
   background-color: rgb(219, 53, 53);
@@ -300,11 +305,12 @@ hr{
   outline: none;
 }
 
-#comDelete:hover , #setProfile:hover{
-  background-color: rgba(243, 9, 9, 0.40);
+#comDelete:hover,
+#setProfile:hover {
+  background-color: rgba(243, 9, 9, 0.4);
 }
 
-#setProfile{
+#setProfile {
   width: 70px;
   cursor: pointer;
   background-color: rgb(248, 10, 10);
@@ -315,11 +321,11 @@ hr{
   transition: all 300ms;
 }
 
-#profileInput{
+#profileInput {
   display: none;
 }
 
-#imapePhoto{
+#imapePhoto {
   min-width: 192px;
   min-height: 192px;
   max-width: 252px;
@@ -327,4 +333,111 @@ hr{
   width: 41vw;
   height: 41vw;
   border-radius: 50%;
+}
+
+#deletAccBut {
+  background-color: rgb(255, 255, 255);
+  padding: 4px;
+  color: rgb(248, 10, 10);
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 2px 0px 15px -1px rgba(165, 38, 38, 0.3);
+  border: solid rgb(248, 10, 10) 2px;
+  font-weight: bolder;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+#deletAccBut:hover {
+  background-color: rgb(185, 28, 28);
+  color: white;
+}
+
+#deleteContainer {
+  position: relative;
+  width: 70vw;
+  margin: auto;
+  min-width: 250px;
+  max-width: 650px;
+  margin-top: 10px;
+  padding: 4px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+  border: 2px solid red;
+  box-shadow: 2px 0px 15px -1px rgba(144, 140, 140, 0.3);
+  transition: all 300ms;
+}
+
+#closePopUp{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  outline: none;
+  cursor: pointer;
+  border: 0px solid rgb(219, 53, 53);
+  color: white;
+  background-color: rgb(170, 12, 12);
+  border-radius: 7px;
+  width: 37px;
+  height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  font-size: 23px;
+  transition: all 300ms;
+}
+
+#noBut{
+  width: 75px;
+  height: 33px;
+  margin-right: 60px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px 1px rgba(54, 53, 53, 0.3);
+  border: 2px solid rgb(211, 3, 3);
+  background-color: red;
+  font-size: 19px;
+  text-align: center;
+  font-weight: 900;
+  transition: all 300ms;
+}
+
+#yesBut{
+  width: 75px;
+  height: 33px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px 1px rgba(54, 53, 53, 0.3);
+  font-size: 19px;
+  border: none;
+  text-align: center;
+  font-weight: 900;
+  transition: all 300ms;
+}
+
+.yesBut{
+  width: 75px;
+  height: 33px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px 1px rgba(54, 53, 53, 0.3);
+  border: 2px solid rgb(211, 3, 3);
+  background-color: red;
+  font-size: 19px;
+  text-align: center;
+  font-weight: 900;
+  transition: all 300ms;
+}
+
+#noBut:hover , .yesBut:hover, #closePopUp:hover{
+  background-color: rgb(98, 29, 29);
+}
+
+#yesBut:hover{
+  background-color: rgb(110, 110, 110);
 }
