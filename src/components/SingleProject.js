@@ -7,24 +7,26 @@ import { motion } from 'framer-motion'
 import { createComment } from '../store/actions/commentAction';
 import { app } from '../config/base'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPen, faCheck, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
 
-function SingleProject({ project, auth, createComment, comment , profile}) {
+function SingleProject({ project, auth, createComment, comment, profile }) {
     const [commentA, setComment] = useState({ parentPost: '', commentText: '' });
-    const [inputValue, setInputValue] = useState(null)
+    const [inputValue, setInputValue] = useState('')
+    const [displayEdit, setDisplayEdit] = useState('none')
+    const [editCom, setEditCom] = useState('');
     const { id } = useParams();
     const db = app.firestore()
     const history = useHistory();
     const [isDeleted, setisDeleted] = useState(false)
     firebase.auth().currentUser?.reload()
 
-    if (!auth.uid || (firebase.auth().currentUser?.emailVerified === false && profile.afterUpdate ))
-    return (
-        <Redirect to="/signin" />
-    )
+    if (!auth.uid || (firebase.auth().currentUser?.emailVerified === false && profile.afterUpdate))
+        return (
+            <Redirect to="/signin" />
+        )
     const handleSubmit = (e) => {
         e.preventDefault()
     }
@@ -43,6 +45,25 @@ function SingleProject({ project, auth, createComment, comment , profile}) {
     const getDataClick = async (e) => {
         let deleteId = (e.target.parentElement.getAttribute('data-id'))
         await db.collection('comments').doc(String(deleteId)).delete()
+    }
+
+    const editComment = (e, text) => {
+        e.preventDefault()
+        setDisplayEdit('block');
+        setEditCom(`${text}`)
+    }
+
+    const saveComment = (e, id) => {
+        e.preventDefault()
+        db.collection('comments').doc(`${id}`).update({
+            commentText: editCom
+        })
+        setDisplayEdit('none')
+    }
+
+    const cancelEdit = (e) => {
+        e.preventDefault()
+        setDisplayEdit('none');
     }
 
     if (project && isDeleted === false) {
@@ -73,11 +94,28 @@ function SingleProject({ project, auth, createComment, comment , profile}) {
                                     <div key={index} id="commentContainer"
                                         data-id={comm.id}
                                     >
-                                        <h2>{comm.authorFirstName} {comm.authorLasttName}</h2>
-                                        <p>{comm.commentText}</p>
+                                        <h2 id="comTitle">{comm.authorFirstName} {comm.authorLasttName}</h2>
+                                        <p id="comText" style={{
+                                            display: (displayEdit === 'none') ? "block" : "none"
+                                        }}>{comm.commentText}</p>
+                                        <form style={{
+                                            display: displayEdit
+                                        }} data-id={comm.id}>
+                                            <input type="text" value={editCom}
+                                                onChange={(e) => { setEditCom(e.target.value) }}
+                                            />
+                                            <br />
+                                            <button id="comDelete" onClick={(e) => saveComment(e, comm.id)}><FontAwesomeIcon icon={faCheck} data-id={comm.id} /></button>
+                                            <button id="comDelete" style={{
+                                                marginLeft: '10px'
+                                            }}
+                                                onClick={cancelEdit}><FontAwesomeIcon icon={faTimesCircle} /></button>
+                                        </form>
                                         <p>{comm.createdAt.toDate().toDateString()}</p>
                                         {(auth.uid === comm.authorId ||
                                             auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="comDelete" onClick={getDataClick} data-id={comm.id}><FontAwesomeIcon icon={faTrash} /></button>}
+                                        {auth.uid === comm.authorId && <button id="editCom" data-text={comm.commentText}
+                                            onClick={(e) => editComment(e, comm.commentText)}><FontAwesomeIcon icon={faPen} /></button>}
                                     </div>
                                 )
                             }

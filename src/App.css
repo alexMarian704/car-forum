@@ -278,12 +278,25 @@ hr {
 }
 
 #commentContainer {
+  position: relative;
   width: 80vw;
   max-width: 600px;
   margin: auto;
   box-shadow: 2px 0px 15px -1px rgba(112, 112, 112, 0.3);
   border-left: 3px solid rgb(219, 53, 53);
   border-radius: 4px;
+}
+
+#editCom{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 40px;
+  cursor: pointer;
+  background-color: rgb(219, 53, 53);
+  border-radius: 3px;
+  border: none;
+  outline: none;
 }
 
 #backHome {
@@ -305,7 +318,16 @@ hr {
   outline: none;
 }
 
+#comText{
+  font-size: 24px;
+}
+
+#comTitle{
+  font-size: 19px;
+}
+
 #comDelete:hover,
+#editCom:hover,
 #setProfile:hover {
   background-color: rgba(243, 9, 9, 0.4);
 }
