@@ -14,7 +14,7 @@ import 'firebase/auth';
 
 function SingleProject({ project, auth, createComment, comment, profile }) {
     const [commentA, setComment] = useState({ parentPost: '', commentText: '' });
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState(undefined)
     const [displayEdit, setDisplayEdit] = useState('none')
     const [editCom, setEditCom] = useState('');
     const { id } = useParams();
