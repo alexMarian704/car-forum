@@ -95,11 +95,9 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                                         data-id={comm.id}
                                     >
                                         <h2 id="comTitle">{comm.authorFirstName} {comm.authorLasttName}</h2>
-                                        <p id="comText" style={{
-                                            display: (displayEdit === 'none') ? "block" : "none"
-                                        }}>{comm.commentText}</p>
+                                        <p id="comText">{comm.commentText}</p>
                                         <form style={{
-                                            display: displayEdit
+                                            display: (auth.uid === comm.authorId) ? displayEdit : "none"
                                         }} data-id={comm.id}>
                                             <input type="text" value={editCom}
                                                 onChange={(e) => { setEditCom(e.target.value) }}
