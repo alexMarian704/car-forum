@@ -17,6 +17,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
     const [inputValue, setInputValue] = useState(undefined)
     const [displayEdit, setDisplayEdit] = useState('none')
     const [editCom, setEditCom] = useState('');
+    const [selectId , setSelectedId] = useState('')
     const { id } = useParams();
     const db = app.firestore()
     const history = useHistory();
@@ -47,8 +48,9 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
         await db.collection('comments').doc(String(deleteId)).delete()
     }
 
-    const editComment = (e, text) => {
+    const editComment = (e, text , id) => {
         e.preventDefault()
+        setSelectedId(id)
         setDisplayEdit('block');
         setEditCom(`${text}`)
     }
@@ -95,9 +97,13 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                                         data-id={comm.id}
                                     >
                                         <h2 id="comTitle">{comm.authorFirstName} {comm.authorLasttName}</h2>
-                                        <p id="comText">{comm.commentText}</p>
+                                        <p id="comText"
+                                        style={{
+                                            display:(displayEdit === 'block' && comm.id === selectId) ? 'none' : 'block'
+                                        }}
+                                        >{comm.commentText}</p>
                                         <form style={{
-                                            display: (auth.uid === comm.authorId) ? displayEdit : "none"
+                                            display: (auth.uid === comm.authorId && comm.id === selectId) ? displayEdit : "none"
                                         }} data-id={comm.id}>
                                             <input type="text" value={editCom}
                                                 onChange={(e) => { setEditCom(e.target.value) }}
@@ -113,7 +119,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                                         {(auth.uid === comm.authorId ||
                                             auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="comDelete" onClick={getDataClick} data-id={comm.id}><FontAwesomeIcon icon={faTrash} /></button>}
                                         {auth.uid === comm.authorId && <button id="editCom" data-text={comm.commentText}
-                                            onClick={(e) => editComment(e, comm.commentText)}><FontAwesomeIcon icon={faPen} /></button>}
+                                            onClick={(e) => editComment(e, comm.commentText, comm.id)}><FontAwesomeIcon icon={faPen} /></button>}
                                     </div>
                                 )
                             }
