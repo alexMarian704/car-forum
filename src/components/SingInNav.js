@@ -8,7 +8,7 @@ function SingInNav({singOut , profile}) {
 
     return (
        <ul>
-           <li><NavLink to="/newproject">New Post</NavLink></li>
+           <NavLink to="/newproject"><li>New Post</li></NavLink>
            <li><a onClick={singOut}>Log Out</a></li>
            {profile.initials && <NavLink to="/your/profile"><li style={{
                color: "white"

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPen, faCheck, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Likes } from './Likes';
 
 
 function SingleProject({ project, auth, createComment, comment, profile }) {
@@ -58,7 +59,8 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
     const saveComment = (e, id) => {
         e.preventDefault()
         db.collection('comments').doc(`${id}`).update({
-            commentText: editCom
+            commentText: editCom,
+            edited:true
         })
         setDisplayEdit('none')
     }
@@ -83,11 +85,16 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                         <p>{singleProject.content}</p>
                         <h2>Posted by {singleProject.authorFirstName} {singleProject.authorLastName}</h2>
                         <h3>{singleProject.createdAt.toDate().toDateString()}</h3>
-                        {singleProject.file && <img src={singleProject.file} alt={singleProject.title} />}
+                        {singleProject.file && singleProject.id === id && <img src={singleProject.file} alt={singleProject.title} />}
+                        {singleProject.file && singleProject.id !== id  &&<h1 style={{
+                            color:'red',
+                            fontSize:"25px"
+                        }}>Loading image...</h1>}
                         <br />
                         {(auth.uid === singleProject.authorId ||
                             auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="createBut" onClick={deletePost}>Delete</button>}
                     </div>
+                    <Likes project={project} db={db} auth={auth}/>
                     <div>
                         <h2>Comments:</h2>
                         {comment && comment.map((comm, index) => {
@@ -102,6 +109,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                                             display:(displayEdit === 'block' && comm.id === selectId) ? 'none' : 'block'
                                         }}
                                         >{comm.commentText}</p>
+                                        {comm.edited && <span id="edited">(edited)</span>}
                                         <form style={{
                                             display: (auth.uid === comm.authorId && comm.id === selectId) ? displayEdit : "none"
                                         }} data-id={comm.id}>

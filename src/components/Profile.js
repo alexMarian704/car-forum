@@ -107,9 +107,9 @@ function Profile({ profile, auth }) {
         >
             {photo === undefined && auth.photoURL === null && profile.initials && <div id="profilePhoto">{profile.initials.toUpperCase()}</div>}
 
-            {photo === undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" /></div>}
+            {photo === undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" alt="profile" /></div>}
 
-            {photo && <div id="profilePhoto"><img src={photo} id="imapePhoto" /></div>}
+            {photo && <div id="profilePhoto"><img src={photo} id="imapePhoto" alt="profile" /></div>}
 
             <form >
                 <input type="file" id="profileInput" ref={inputFile} onChange={uploadFile} />
