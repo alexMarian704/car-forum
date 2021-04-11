@@ -94,7 +94,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                         {(auth.uid === singleProject.authorId ||
                             auth.uid === `fF1LRlXcvrSHgycDhH5XQFzetFo1`) && <button id="createBut" onClick={deletePost}>Delete</button>}
                     </div>
-                    <Likes project={project} db={db} auth={auth}/>
+                    <Likes project={singleProject} auth={auth}/>
                     <div>
                         <h2>Comments:</h2>
                         {comment && comment.map((comm, index) => {

@@ -8,6 +8,10 @@ export const createProject = (project)=>{
             authorFirstName :profile.firstName,
             authorLasttName: profile.lastName,
             authorId:id,
+            likes:0,
+            dislikes:0,
+            fromLike:[],
+            fromDislike:[],
             createdAt : new Date()
         }).then(()=>{
             dispatch({ type: 'CREATE_PROJECT', project}) 
