@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'
 import { Redirect, useParams, useHistory } from 'react-router';
@@ -29,6 +29,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
         return (
             <Redirect to="/signin" />
         )
+    
     const handleSubmit = (e) => {
         e.preventDefault()
     }
@@ -70,7 +71,10 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
         setDisplayEdit('none');
     }
 
+    window.scrollTo(0, 80)
+
     if (project && isDeleted === false) {
+
         const singleProject = project[0];
         return (
             <motion.div
