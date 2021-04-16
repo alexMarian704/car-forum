@@ -288,12 +288,12 @@ hr {
 }
 
 @media only screen and (max-width: 420px) {
-  #card{
+  #card {
     width: 97vw;
   }
 }
 
-#editCom{
+#editCom {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -324,12 +324,12 @@ hr {
   outline: none;
 }
 
-#comText{
+#comText {
   font-size: 24px;
   margin-bottom: 0;
 }
 
-#comTitle{
+#comTitle {
   font-size: 19px;
 }
 
@@ -398,7 +398,7 @@ hr {
   transition: all 300ms;
 }
 
-#closePopUp{
+#closePopUp {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -418,7 +418,7 @@ hr {
   transition: all 300ms;
 }
 
-#noBut{
+#noBut {
   width: 75px;
   height: 33px;
   margin-right: 60px;
@@ -434,7 +434,7 @@ hr {
   transition: all 300ms;
 }
 
-#yesBut{
+#yesBut {
   width: 75px;
   height: 33px;
   cursor: pointer;
@@ -448,7 +448,7 @@ hr {
   transition: all 300ms;
 }
 
-.yesBut{
+.yesBut {
   width: 75px;
   height: 33px;
   cursor: pointer;
@@ -463,22 +463,24 @@ hr {
   transition: all 300ms;
 }
 
-#noBut:hover , .yesBut:hover, #closePopUp:hover{
+#noBut:hover,
+.yesBut:hover,
+#closePopUp:hover {
   background-color: rgb(98, 29, 29);
 }
 
-#yesBut:hover{
+#yesBut:hover {
   background-color: rgb(110, 110, 110);
 }
 
-#edited{
+#edited {
   margin: 0;
   padding: 0;
   display: block;
   color: rgb(87, 87, 87);
 }
 
-#like{
+#like {
   font-size: calc(20px + 0.5vw);
   outline: none;
   background-color: transparent;
@@ -488,7 +490,7 @@ hr {
   transition: all 300ms;
 }
 
-#dislike{
+#dislike {
   font-size: calc(20px + 0.5vw);
   outline: none;
   background-color: transparent;
@@ -498,7 +500,7 @@ hr {
   transition: all 300ms;
 }
 
-#likeContainer{
+#likeContainer {
   width: 40vw;
   min-width: 200px;
   max-width: 600px;
@@ -507,18 +509,50 @@ hr {
   justify-content: space-around;
 }
 
-#likeLine{
+#likeLine {
   width: 100%;
 }
 
-#like:hover , #dislike:hover{
+#like:hover,
+#dislike:hover {
   color: rgb(124, 46, 46);
 }
 
-#mainLikeContainer{
+#mainLikeContainer {
   width: 40vw;
   min-width: 200px;
   max-width: 600px;
   margin: auto;
   text-align: center;
+}
+
+#profileLink {
+  text-decoration: red;
+  text-decoration-line: underline;
+}
+
+.profilePosts {
+  width: 70vw;
+  max-width: 600px;
+  min-width: 240px;
+  margin: auto;
+  border-bottom: 2px solid rgb(226, 7, 7);
+  margin-bottom: 10px;
+}
+
+.detailContainer {
+  width: 44vw;
+  max-width: 500px;
+  min-width: 200px;
+  border-bottom: 2px solid rgb(226, 7, 7);
+  margin: auto;
+}
+
+.postLink {
+  transition: all 800ms ease-in-out;
+}
+
+.postLink:hover {
+  text-decoration: red;
+  text-decoration-line: underline;
 }

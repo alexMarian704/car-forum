@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'
 import { Redirect, useParams, useHistory } from 'react-router';
+import { Link } from 'react-router-dom'
 import { compose } from 'redux'
 import { motion } from 'framer-motion'
 import { createComment } from '../store/actions/commentAction';
@@ -71,7 +72,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
         setDisplayEdit('none');
     }
 
-    window.scrollTo(0, 80)
+    window.scrollTo(0, 10)
 
     if (project && isDeleted === false) {
 
@@ -87,7 +88,7 @@ function SingleProject({ project, auth, createComment, comment, profile }) {
                     <div>
                         <h1>{singleProject.title}</h1>
                         <p>{singleProject.content}</p>
-                        <h2>Posted by {singleProject.authorFirstName} {singleProject.authorLastName}</h2>
+                        <h2>Posted by <Link to={`/profile/${singleProject.authorId}`} id="profileLink">{singleProject.authorFirstName} {singleProject.authorLasttName}</Link></h2>
                         <h3>{singleProject.createdAt.toDate().toDateString()}</h3>
                         {singleProject.file && singleProject.id === id && <img src={singleProject.file} alt={singleProject.title} />}
                         {singleProject.file && singleProject.id !== id  &&<h1 style={{
