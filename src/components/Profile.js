@@ -17,6 +17,8 @@ function Profile({ profile, auth }) {
     const [actulaPassword, setActualPassword] = useState('')
     const [passwordView, setPasswordView] = useState('none')
 
+    const db = app.firestore()
+
     let d = null;
     firebase.auth().currentUser?.reload()
     if (auth.uid) {
@@ -44,10 +46,13 @@ function Profile({ profile, auth }) {
                 async () => {
                     const url = await storageRef.getDownloadURL()
                     setPhoto(url);
-                    await user.updateProfile({
-                        photoURL: url
-                    }).then(async () => {
-                        await firebase.auth().currentUser?.reload()
+                    // await user.updateProfile({
+                    //     photoURL: url
+                    // }).then(async () => {
+                    //     await firebase.auth().currentUser?.reload()
+                    // })
+                    await db.collection('users').doc(auth.uid).update({
+                        profileImage:url
                     })
                 })
         }
@@ -105,11 +110,11 @@ function Profile({ profile, auth }) {
             exit={{ opacity: 1 }}
             transition={{ duration: 1.4 }}
         >
-            {photo === undefined && auth.photoURL === null && profile.initials && <div id="profilePhoto">{profile.initials.toUpperCase()}</div>}
+            {photo === undefined && auth.photoURL === null && profile.initials && profile.profileImage=== undefined &&<div id="profilePhoto">{profile.initials.toUpperCase()}</div>}
 
-            {photo === undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" alt="profile" /></div>}
+            {photo === undefined && profile.profileImage=== undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" alt="profile" /></div>}
 
-            {photo && <div id="profilePhoto"><img src={photo} id="imapePhoto" alt="profile" /></div>}
+            {profile.profileImage && <div id="profilePhoto"><img src={profile.profileImage} id="imapePhoto" alt="profile" /></div>}
 
             <form >
                 <input type="file" id="profileInput" ref={inputFile} onChange={uploadFile} />
