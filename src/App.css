@@ -556,3 +556,49 @@ hr {
   text-decoration: red;
   text-decoration-line: underline;
 }
+
+.addFriend{
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  margin-top: 5px;
+  border: none;
+  width: 80px;
+  height: 30px;
+  font-size: calc(17.5px + 0.22rem);
+  background-color: rgb(226, 7, 7);
+  color: white;
+  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+}
+
+.removeFriend{
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  margin-top: 5px;
+  border: none;
+  width: 75px;
+  height: 30px;
+  font-size: calc(17.5px + 0.22rem);
+  color: rgb(255, 255, 255);
+  background-color: rgb(143, 13, 13);
+  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+}
+
+.removeFriend:hover , .addFriend:hover , #friendsLink:hover{
+  background-color: rgb(173, 34, 34);
+}
+
+#friendsLink{
+  background-color: rgb(226, 7, 7);
+  width: 20vw;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+  cursor: pointer;
+  outline: none;
+  max-width: 170px;
+  min-width: 165px;
+  height: 30px;
+}

@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect, useHistory , Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { app } from '../config/base'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
-function Profile({ profile, auth }) {
+function Profile({ profile, auth , projects}) {
     const [photo, setPhoto] = useState(undefined)
     const inputFile = useRef(null)
     const [display, setDisplay] = useState("none")
@@ -16,9 +18,9 @@ function Profile({ profile, auth }) {
     const [deleteError, setDeleteError] = useState(null)
     const [actulaPassword, setActualPassword] = useState('')
     const [passwordView, setPasswordView] = useState('none')
+    const myPosts = []
 
     const db = app.firestore()
-
     let d = null;
     firebase.auth().currentUser?.reload()
     if (auth.uid) {
@@ -46,17 +48,18 @@ function Profile({ profile, auth }) {
                 async () => {
                     const url = await storageRef.getDownloadURL()
                     setPhoto(url);
-                    // await user.updateProfile({
-                    //     photoURL: url
-                    // }).then(async () => {
-                    //     await firebase.auth().currentUser?.reload()
-                    // })
                     await db.collection('users').doc(auth.uid).update({
                         profileImage:url
                     })
                 })
         }
     }
+
+    projects && projects.map((project)=>{
+        if (project.authorId === auth.uid) {
+            myPosts.push(project)
+        }
+    })
 
     const uploadButton = (e) => {
         e.preventDefault()
@@ -115,7 +118,10 @@ function Profile({ profile, auth }) {
             {photo === undefined && profile.profileImage=== undefined && auth.photoURL && <div id="profilePhoto"><img src={auth.photoURL} id="imapePhoto" alt="profile" /></div>}
 
             {profile.profileImage && <div id="profilePhoto"><img src={profile.profileImage} id="imapePhoto" alt="profile" /></div>}
-
+            <div>
+                {profile.friends && <Link to="/your/friends"><h2 id="friendsLink">Friends: {profile.friends.length}</h2></Link> }
+                {profile.friends === undefined && <Link to="/your/friends"><h2 id="friendsLink">Friends: 0</h2></Link>}
+            </div>
             <form >
                 <input type="file" id="profileInput" ref={inputFile} onChange={uploadFile} />
                 <button id="setProfile" onClick={uploadButton}><FontAwesomeIcon icon={faCamera} /></button>
@@ -156,6 +162,15 @@ function Profile({ profile, auth }) {
                     </div>
                 </div>
             </div>
+            <div className="detailContainer">
+                <h2>My posts:</h2>
+            </div>
+            {myPosts.map((post, index) => (
+                <div key={index} className="profilePosts">
+                    <Link to={`/project/${post.id}`} className="postLink"> <h1 id="cardText">{post.title}</h1></Link>
+                    <p>{post.createdAt.toDate().toDateString()}</p>
+                </div>
+            ))}
         </motion.div>
     )
 }
@@ -163,8 +178,14 @@ function Profile({ profile, auth }) {
 const mapStateProfile = (state) => {
     return {
         profile: state.firebase.profile,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        projects: state.firestore.ordered.projects,
     }
 }
 
-export default connect(mapStateProfile)(Profile)
+export default compose(
+    connect(mapStateProfile),
+    firestoreConnect([
+        { collection: 'projects', orderBy: ['createdAt', 'desc'] }
+    ]))
+    (Profile)

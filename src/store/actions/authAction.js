@@ -37,7 +37,8 @@ export const singUp = (newUser) => {
                     firstName: newUser.firstName,
                     lastName: newUser.lastName,
                     initials: newUser.firstName[0] + newUser.lastName[0],
-                    afterUpdate:true
+                    afterUpdate:true,
+                    friends:[]
                 })
             }).then(() => {
                 let user = firebase.auth().currentUser;

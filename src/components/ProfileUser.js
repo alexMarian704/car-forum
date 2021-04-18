@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { motion } from 'framer-motion'
+import { AddFriend } from './AddFriend'
 
-const ProfileUser = ({ projects , auth}) => {
+const ProfileUser = ({ projects , auth, profile}) => {
     const [data, setData] = useState(null)
     const { id } = useParams()
     const db = app.firestore()
@@ -44,6 +45,7 @@ const ProfileUser = ({ projects , auth}) => {
         >
             {data && data.initials && data.profileImage === undefined && <div id="profilePhoto">{data.initials.toUpperCase()}</div>}
             {data && data.profileImage && <div id="profilePhoto"><img src={data.profileImage} id="imapePhoto" alt="profile" /></div>}
+            <AddFriend user={data} auth={auth} profile={profile} id={id}/>
             {data && <h2>First name: {data.firstName}</h2>}
             {data && <h2>Last name: {data.lastName}</h2>}
             <div className="detailContainer">
@@ -62,7 +64,8 @@ const ProfileUser = ({ projects , auth}) => {
 const mapStateProject = (state) => {
     return {
         projects: state.firestore.ordered.projects,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
     }
 }
 
