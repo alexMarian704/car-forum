@@ -37,7 +37,7 @@ export const AddFriend = ({ user, auth, profile , id }) => {
         const remove = []
         profile.friends.map((idFriend)=>{
             if(idFriend != id){
-                remove.pop(idFriend)
+                remove.push(idFriend)
             }
         })
 

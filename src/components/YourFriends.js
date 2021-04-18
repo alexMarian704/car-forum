@@ -40,7 +40,12 @@ const YourFriends = ({ profile }) => {
 
     if (loading === false) {
         return (
-            <div>
+            <motion.div
+                initial={{opacity:0}}
+                animate={{opacity:1}}
+                exit={{opacity:1}}
+                transition={{duration:1.4}}
+            >
                 <h1>Friends</h1>
                 <div className="friendsContainer">
                     {error && <h2>{error}</h2>}
@@ -54,7 +59,7 @@ const YourFriends = ({ profile }) => {
                         )
                     })}
                 </div>
-            </div>
+            </motion.div>
         )
     } else {
         return (
