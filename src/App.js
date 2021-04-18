@@ -10,7 +10,7 @@ import Footer from './components/footer';
 import Profile from './components/Profile';
 import ErrorPage from './components/404';
 import ProfileUser from './components/ProfileUser';
-import { YourFriends } from './components/YourFriends';
+import YourFriends from './components/YourFriends';
 
 function App() {
   return (

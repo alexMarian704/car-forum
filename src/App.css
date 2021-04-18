@@ -602,3 +602,14 @@ hr {
   min-width: 165px;
   height: 30px;
 }
+
+#friendLink{
+  display: block;
+}
+
+#friendBox{
+  margin-bottom: 20px;
+  padding: 1px;
+  border-bottom: rgb(248, 10, 10) 2px solid;
+  border-top: rgb(248, 10, 10) 2px solid;
+}
