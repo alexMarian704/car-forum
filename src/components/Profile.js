@@ -119,8 +119,8 @@ function Profile({ profile, auth , projects}) {
 
             {profile.profileImage && <div id="profilePhoto"><img src={profile.profileImage} id="imapePhoto" alt="profile" /></div>}
             <div>
-                {profile.friends && <Link to="/your/friends"><h2 id="friendsLink">Friends: {profile.friends.length}</h2></Link> }
-                {profile.friends === undefined && <Link to="/your/friends"><h2 id="friendsLink">Friends: 0</h2></Link>}
+                {profile.friends && <Link to="/your/follow"><h2 id="friendsLink">Follow: {profile.friends.length}</h2></Link> }
+                {profile.friends === undefined && <Link to="/your/follow"><h2 id="friendsLink">Friends: 0</h2></Link>}
             </div>
             <form >
                 <input type="file" id="profileInput" ref={inputFile} onChange={uploadFile} />

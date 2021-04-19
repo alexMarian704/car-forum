@@ -26,8 +26,6 @@ const YourFriends = ({ profile }) => {
             }).then(() => {
                 if (loading === false && person === undefined) {
                     setPerson([...array])
-                    // setPerson([...array])
-                    // setPersonUid([...uidArray])
                     setPersonUid([...uidArray])
                 }
                 setLoading(false)

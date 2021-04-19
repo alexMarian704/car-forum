@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 import ErrorPage from './components/404';
 import ProfileUser from './components/ProfileUser';
 import YourFriends from './components/YourFriends';
+import MessageApp from './components/MessageApp';
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
           <Route path="/newproject" component={CreateProject}/>
           <Route path="/your/profile" component={Profile}/>
           <Route path="/profile/:id" component={ProfileUser}/>
-          <Route path="/your/friends" component={YourFriends}/>
+          <Route path="/your/follow" component={YourFriends}/>
+          <Route path="/message/:id" component={MessageApp}/>
           <Route  path="*" component={ErrorPage}/>
         </Switch>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus , faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import { app } from '../config/base'
+import Message from './Message'
 
 export const AddFriend = ({ user, auth, profile , id }) => {
     const myId = auth.uid;
@@ -53,13 +54,20 @@ export const AddFriend = ({ user, auth, profile , id }) => {
     return (
         <div>
             <div>
+            <div className="interactContainer"
+                style={{
+                    justifyContent: isFriend === false ? 'center' : 'space-between'
+                }}
+            >
                 {isFriend ===false &&  <button onClick={addUser} className="addFriend">
                     <FontAwesomeIcon icon={faUserPlus} />
                 </button>}
-
+                {isFriend === true && <Message auth={auth} 
+                profile={profile}/>}
                 {isFriend === true && <button onClick={removeFriend} className="removeFriend">
                     <FontAwesomeIcon icon={faUserTimes} />
                 </button>}
+                </div>
             </div>
         </div>
     )

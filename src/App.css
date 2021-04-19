@@ -624,3 +624,12 @@ hr {
   background-color: rgb(240, 12, 12);
   transform: scale(1.08);
 }
+
+.interactContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 15vw;
+  margin: auto;
+  min-width: 170px;
+  max-width: 210px;
+}
