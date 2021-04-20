@@ -110,7 +110,6 @@ const MessageApp = ({ auth, profile }) => {
             });
     }
 
-    if (message != undefined) {
         return (
             <motion.div
                 initial={{ opacity: 0 }}
@@ -144,11 +143,6 @@ const MessageApp = ({ auth, profile }) => {
                 </div>
             </motion.div>
         )
-    }else{
-        return(
-            <h1>Loading...</h1>
-        )
-    }
 }
 
 const mapStateProfile = (state) => {
