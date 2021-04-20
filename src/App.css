@@ -557,7 +557,7 @@ hr {
   text-decoration-line: underline;
 }
 
-.addFriend{
+.addFriend {
   cursor: pointer;
   outline: none;
   border-radius: 3px;
@@ -568,11 +568,11 @@ hr {
   font-size: calc(17.5px + 0.22rem);
   background-color: rgb(226, 7, 7);
   color: white;
-  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+  box-shadow: 0px 0px 7px 3px rgba(145, 145, 145, 0.15);
   transition: all 300ms;
 }
 
-.removeFriend{
+.removeFriend {
   cursor: pointer;
   outline: none;
   border-radius: 3px;
@@ -583,21 +583,24 @@ hr {
   font-size: calc(17.5px + 0.22rem);
   color: rgb(255, 255, 255);
   background-color: rgb(143, 13, 13);
-  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+  box-shadow: 0px 0px 7px 3px rgba(145, 145, 145, 0.15);
   transition: all 300ms;
 }
 
-.removeFriend:hover , .addFriend:hover , #friendsLink:hover{
+.removeFriend:hover,
+.addFriend:hover,
+#friendsLink:hover,
+.sendBut:hover {
   background-color: rgb(173, 34, 34);
 }
 
-#friendsLink{
+#friendsLink {
   background-color: rgb(226, 7, 7);
   width: 20vw;
   margin: auto;
   margin-top: 10px;
   border-radius: 5px;
-  box-shadow: 0px 0px 7px 3px rgba(145,145,145,0.15);
+  box-shadow: 0px 0px 7px 3px rgba(145, 145, 145, 0.15);
   cursor: pointer;
   outline: none;
   max-width: 170px;
@@ -606,30 +609,104 @@ hr {
   transition: all 300ms;
 }
 
-#friendLink{
+#friendLink {
   display: block;
 }
 
-#friendBox{
+#friendBox {
   margin-bottom: 20px;
   padding: 1px;
   border-bottom: rgb(248, 10, 10) 2px solid;
   border-top: rgb(248, 10, 10) 2px solid;
   border-radius: 3px;
-  box-shadow: 0px 0px 4px 3px rgba(145,145,145,0.12);
+  box-shadow: 0px 0px 4px 3px rgba(145, 145, 145, 0.12);
   transition: all 510ms;
 }
 
-#friendBox:hover{
+#friendBox:hover {
   background-color: rgb(240, 12, 12);
   transform: scale(1.08);
 }
 
-.interactContainer{
+.interactContainer {
   display: flex;
   justify-content: space-between;
   width: 15vw;
   margin: auto;
   min-width: 170px;
   max-width: 210px;
+}
+
+.messagesContainer {
+  width: 97vw;
+  margin: auto;
+  max-width: 950px;
+  height: 80vh;
+  background-color: rgb(32, 32, 28);
+  overflow-y: auto;
+  box-shadow: 0px 0px 10px 3px rgba(145, 145, 145, 0.07);
+  border-radius: 4px;
+  padding-bottom: 30px;
+}
+
+.messagesContainer::-webkit-scrollbar{
+  width: 2px;
+  background-color: red;
+}
+
+.messagesContainer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.single-my {
+  display: flex;
+  width: 94%;
+  margin: auto;
+  margin-bottom: 0px;
+  justify-content: flex-end;
+}
+
+.single-his {
+  display: flex;
+  width: 94%;
+  margin: auto;
+  height: 60px;
+  padding: 5px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+
+#mymes {
+  display: block;
+  width: 50%;
+  min-height: 40px;
+  word-wrap: break-word;
+  background-color: red;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px 3px rgba(145, 145, 145, 0.12);
+  padding: 3px;
+}
+
+#hismes{
+  display: block;
+  width: 50%;
+  min-height: 40px;
+  word-wrap: break-word;
+  background-color: rgb(253, 253, 253);
+  color: black;
+  border-radius: 4px;
+  padding: 3px;
+  box-shadow: 0px 0px 4px 3px rgba(145, 145, 145, 0.12);
+}
+
+.sendBut{
+  width: 80px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px 3px rgba(145, 145, 145, 0.12);
+  transition: all 350ms;
+  border: none;
+  background-color: rgb(233, 11, 11);
 }

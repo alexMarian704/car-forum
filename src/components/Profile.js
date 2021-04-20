@@ -119,7 +119,13 @@ function Profile({ profile, auth , projects}) {
 
             {profile.profileImage && <div id="profilePhoto"><img src={profile.profileImage} id="imapePhoto" alt="profile" /></div>}
             <div>
-                {profile.friends && <Link to="/your/follow"><h2 id="friendsLink">Follow: {profile.friends.length}</h2></Link> }
+                {profile.friends && <Link to="/your/follow" style={{
+                    display:'block',
+                    width:'30vw',
+                    margin:'auto',
+                    maxWidth: '170px',
+                    minWidth: '165px'
+                }}><h2 id="friendsLink">Follow: {profile.friends.length}</h2></Link> }
                 {profile.friends === undefined && <Link to="/your/follow"><h2 id="friendsLink">Friends: 0</h2></Link>}
             </div>
             <form >
