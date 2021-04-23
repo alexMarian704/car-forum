@@ -39,7 +39,7 @@ li {
   border-radius: 3px;
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 570px) {
   nav h1 {
     font-size: 22px;
   }
@@ -290,6 +290,9 @@ hr {
 @media only screen and (max-width: 420px) {
   #card {
     width: 97vw;
+  }
+  #links-container {
+    width: 70vw;
   }
 }
 

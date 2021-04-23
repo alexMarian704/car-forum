@@ -12,6 +12,7 @@ import ErrorPage from './components/404';
 import ProfileUser from './components/ProfileUser';
 import YourFriends from './components/YourFriends';
 import MessageApp from './components/MessageApp';
+import Search from './components/Search';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/profile/:id" component={ProfileUser}/>
           <Route path="/your/follow" component={YourFriends}/>
           <Route path="/message/:id" component={MessageApp}/>
+          <Route path="/search" component={Search}/>
           <Route  path="*" component={ErrorPage}/>
         </Switch>
         </div>

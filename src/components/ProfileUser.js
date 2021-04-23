@@ -6,7 +6,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { motion } from 'framer-motion'
 import { AddFriend } from './AddFriend'
-import Message from './Message'
 
 const ProfileUser = ({ projects , auth, profile}) => {
     const [data, setData] = useState(null)
